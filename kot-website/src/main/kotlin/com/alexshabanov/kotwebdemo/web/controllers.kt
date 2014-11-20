@@ -15,8 +15,8 @@ controller class PublicController {
 
   req(array("/hello.html")) fun hello(r : HttpServletResponse,
                                       param("greeting", defaultValue = "Hello") greeting : String) {
-    val writer = OutputStreamWriter(r.getOutputStream())
-    writer.append("<p>" + greeting + " from Spring!</p>")
-    writer.close() // ugly :(
+    OutputStreamWriter(r.getOutputStream()).use {
+      it.append("<p>" + greeting + " from Spring!</p>")
+    }
   }
 }

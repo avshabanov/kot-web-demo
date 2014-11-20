@@ -8,6 +8,10 @@ import java.util.EnumSet
 import javax.servlet.DispatcherType
 import org.springframework.web.context.ContextLoaderListener
 import org.springframework.web.servlet.DispatcherServlet
+import org.eclipse.jetty.server.handler.ResourceHandler
+import org.eclipse.jetty.server.handler.HandlerCollection
+import org.eclipse.jetty.server.Handler
+import org.eclipse.jetty.util.resource.Resource
 
 
 private fun initSpringContext(context : ServletContextHandler) {
@@ -28,15 +32,19 @@ private fun initSpringContext(context : ServletContextHandler) {
  */
 fun main(args: Array<String>) {
   val server = Server(8080)
-  val context = ServletContextHandler(ServletContextHandler.NO_SESSIONS)
-  context.setContextPath("/")
 
-  initSpringContext(context)
+  val resourceHandler = ResourceHandler()
+  resourceHandler.setBaseResource(Resource.newClassPathResource("webapp/static"))
 
-  val defaultServletHolder = context.addServlet(javaClass<DefaultServlet>(), "/")
-  defaultServletHolder.setInitParameter("resourceBase", "src/main/webapp")
+  val contextHandler = ServletContextHandler(ServletContextHandler.NO_SESSIONS)
+  contextHandler.setContextPath("/")
+  initSpringContext(contextHandler)
+//  val defaultServletHolder = contextHandler.addServlet(javaClass<DefaultServlet>(), "/")
+//  defaultServletHolder.setInitParameter("resourceBase", "src/main/webapp")
 
-  server.setHandler(context)
+  val handlerList = HandlerCollection()
+  handlerList.setHandlers(array<Handler>(resourceHandler, contextHandler))
+  server.setHandler(handlerList)
 
   server.start()
   server.join()
