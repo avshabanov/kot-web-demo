@@ -34,13 +34,12 @@ fun main(args: Array<String>) {
   val server = Server(8080)
 
   val resourceHandler = ResourceHandler()
-  resourceHandler.setBaseResource(Resource.newClassPathResource("webapp/static"))
+
+  resourceHandler.setBaseResource(Resource.newClassPathResource("/foliage"))
 
   val contextHandler = ServletContextHandler(ServletContextHandler.NO_SESSIONS)
   contextHandler.setContextPath("/")
   initSpringContext(contextHandler)
-//  val defaultServletHolder = contextHandler.addServlet(javaClass<DefaultServlet>(), "/")
-//  defaultServletHolder.setInitParameter("resourceBase", "src/main/webapp")
 
   val handlerList = HandlerCollection()
   handlerList.setHandlers(array<Handler>(resourceHandler, contextHandler))

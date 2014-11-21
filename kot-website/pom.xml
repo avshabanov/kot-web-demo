@@ -137,8 +137,18 @@
         <filtering>false</filtering>
         <includes>
           <include>**/*.xml</include>
+
+          <!-- Unfiltered web resources -->
           <include>**/*.json</include>
-          <include>**/*.sql</include>
+          <include>**/*.js</include>
+          <include>**/*.css</include>
+          <include>**/*.htm</include>
+          <include>**/*.html</include>
+          <include>**/*.png</include>
+          <include>**/*.jpg</include>
+          <include>**/*.jpeg</include>
+          <include>**/*.txt</include>
+          <!--<include>**/*.sql</include>-->
         </includes>
       </resource>
     </resources>
