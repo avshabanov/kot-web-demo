@@ -11,7 +11,7 @@ import java.io.OutputStreamWriter
 //
 
 controller class PublicController {
-  req(array("/index.html")) fun index(): String = "index"
+  req(array("/test.html")) fun index(): String = "test"
 
   req(array("/hello.html")) fun hello(r : HttpServletResponse,
                                       param("greeting", defaultValue = "Hello") greeting : String) {
