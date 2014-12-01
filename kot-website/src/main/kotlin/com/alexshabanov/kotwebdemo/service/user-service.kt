@@ -7,11 +7,11 @@ import com.truward.ascetic.Request
 import com.truward.ascetic.Response
 import com.truward.ascetic.CallResult
 import com.truward.ascetic.CallResultCreator
-import com.truward.ascetic.support.ImmediateCallResultCreator
+import com.truward.ascetic.ImmediateCallResultCreator
 import com.truward.ascetic.Context
 import com.truward.ascetic.Service
-import com.truward.ascetic.support.DefaultContext
-import com.truward.ascetic.support.ServiceSupport
+import com.truward.ascetic.DefaultContext
+import com.truward.ascetic.ServiceSupport
 
 //
 // Service API

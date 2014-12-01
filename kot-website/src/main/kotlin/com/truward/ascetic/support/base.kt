@@ -1,4 +1,4 @@
-package com.truward.ascetic.support
+package com.truward.ascetic
 
 import com.truward.ascetic.CallResult
 import com.truward.ascetic.CallResultCreator
