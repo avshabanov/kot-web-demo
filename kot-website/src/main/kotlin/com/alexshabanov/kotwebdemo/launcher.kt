@@ -14,7 +14,7 @@ import org.eclipse.jetty.server.Handler
 import org.eclipse.jetty.util.resource.Resource
 
 
-private fun initSpringContext(context : ServletContextHandler) {
+private fun initSpringContext(context: ServletContextHandler) {
   context.setInitParameter("contextConfigLocation", "classpath:/spring/service-context.xml")
 
   val cef = context.addFilter(javaClass<CharacterEncodingFilter>(), "/*", EnumSet.allOf(javaClass<DispatcherType>()))
@@ -34,7 +34,6 @@ fun main(args: Array<String>) {
   val server = Server(8080)
 
   val resourceHandler = ResourceHandler()
-
   resourceHandler.setBaseResource(Resource.newClassPathResource("/foliage"))
 
   val contextHandler = ServletContextHandler(ServletContextHandler.NO_SESSIONS)

@@ -13,8 +13,8 @@ import java.io.OutputStreamWriter
 controller class PublicController {
   req(array("/test.html")) fun index(): String = "test"
 
-  req(array("/hello.html")) fun hello(r : HttpServletResponse,
-                                      param("greeting", defaultValue = "Hello") greeting : String) {
+  req(array("/hello.html")) fun hello(r: HttpServletResponse,
+                                      param("greeting", defaultValue = "Hello") greeting: String) {
     OutputStreamWriter(r.getOutputStream()).use {
       it.append("<p>" + greeting + " from Spring!</p>")
     }
