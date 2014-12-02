@@ -9,9 +9,7 @@ trait Context {
 
 /** Marker interface for service call request DTOs. */
 trait Request {
-  /**
-   * Each request carries a context in which it has been created. It is required for making nested reporting.
-   */
+  /** Each request carries a context in which it has been created. It is required for making nested reporting. */
   val context: Context
 }
 
@@ -22,7 +20,7 @@ trait Response
 trait Service
 
 /** Model for service response. */
-trait CallResult<T : Response> {
+trait CallResult<T: Response> {
   fun get(): T
 }
 
