@@ -13,4 +13,12 @@
     <property name="basename" value="classpath:/messages"/>
     <property name="defaultEncoding" value="UTF-8"/>
   </bean>
+
+  <!-- Services -->
+
+  <bean id="svc.resultCreator" class="com.truward.ascetic.ImmediateCallResultCreator"/>
+
+  <bean id="svc.userService" class="com.alexshabanov.kotwebdemo.service.UserServiceImpl">
+    <constructor-arg ref="svc.resultCreator"/>
+  </bean>
 </beans>

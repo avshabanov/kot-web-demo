@@ -1,18 +1,27 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:context="http://www.springframework.org/schema/context"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="
         http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
         http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
-
-  <!--<context:component-scan base-package="com.alexshabanov.kotwebdemo.web.controllers"/>-->
+  <context:annotation-config/>
 
   <bean class="com.alexshabanov.kotwebdemo.web.controllers.PublicController"/>
+  <!--<bean class="com.alexshabanov.kotwebdemo.web.controllers.ControllersPackage" factory-method="createPubController"/>-->
+  <bean class="com.alexshabanov.kotwebdemo.web.controllers.RestController">
+    <constructor-arg ref="svc.userService"/>
+  </bean>
 
-  <!-- Turns on support for mapping requests to Spring MVC @Controller methods
-       Also registers default Formatters and Validators for use across all @Controllers -->
-  <mvc:annotation-driven />
+  <!-- Annotation driven support for MVC controllers -->
+  <mvc:annotation-driven>
+    <!-- custom jackson marshallers (for some reason they are created twice) -->
+    <mvc:message-converters>
+      <bean class="com.alexshabanov.kotwebdemo.web.mapping.MappingPackage" factory-method="createDomainModelConverter"/>
+    </mvc:message-converters>
+  </mvc:annotation-driven>
 
   <!-- freemarker config -->
   <bean id="freemarkerConfig" class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">
@@ -29,6 +38,4 @@
   <bean id="handlerMapping" class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping">
     <property name="alwaysUseFullPath" value="true"/>
   </bean>
-
-  <!--<bean class="com.alexshabanov.kotwebdemo.web.config.JacksonConfigurer"/>-->
 </beans>

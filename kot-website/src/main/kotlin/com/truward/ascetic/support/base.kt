@@ -35,6 +35,10 @@ class DefaultContext(override val globalRequestId: String = "NONE"): Context {
         "gid=${globalRequestId}") // shouldn't happen
     return null
   }
+
+  override fun toString(): String {
+    return "<default>"
+  }
 }
 
 /**

@@ -23,7 +23,7 @@ private fun initSpringContext(context: ServletContextHandler) {
 
   context.addEventListener(ContextLoaderListener())
 
-  val ds = context.addServlet(javaClass<DispatcherServlet>(), "*.html")
+  val ds = context.addServlet(javaClass<DispatcherServlet>(), "/g/*,/rest/*")
   ds.setInitParameter("contextConfigLocation", "classpath:/spring/webmvc-context.xml")
 }
 
